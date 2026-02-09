@@ -96,7 +96,6 @@ contract NFTPoolLockAndRelease is CCIPReceiver, OwnerIsCreator {
     // construct data to be sent
     bytes memory payload = abi.encode(tokenId, newOwner);
     bytes32 messageId = sendMessagePayLINK(chainSelector, receiver, payload);
-    TokenLocked[tokenId] = true;
     return messageId;
   }
 
@@ -158,8 +157,6 @@ contract NFTPoolLockAndRelease is CCIPReceiver, OwnerIsCreator {
     uint256 tokenId = requestData.tokenId;
     address newOwner = requestData.newOwner;
 
-    // check the NFT is locked by this contract
-    require(TokenLocked[tokenId] == true, "NFT is not locked");
     // transfer NFT to new owner
     nft.transferFrom(address(this), newOwner, tokenId);
 
@@ -168,7 +165,6 @@ contract NFTPoolLockAndRelease is CCIPReceiver, OwnerIsCreator {
       tokenId
     );
 
-    TokenLocked[tokenId] = false;
   }
 
   /// @notice Construct a CCIP message.
