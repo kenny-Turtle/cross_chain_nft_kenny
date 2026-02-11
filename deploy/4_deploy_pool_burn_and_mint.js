@@ -21,4 +21,4 @@ module.exports = async ({deployments, getNamedAccounts}) =>{
     console.log("pool burn and mint deployed successfully")
 }
 
-exports.tags = ["destchain", "all"]
+module.exports.tags = ["destchain", "all"]

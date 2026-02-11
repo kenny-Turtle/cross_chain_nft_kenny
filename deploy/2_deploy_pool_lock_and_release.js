@@ -22,4 +22,4 @@ module.exports = async ({deployments, getNamedAccounts}) =>{
     console.log("pool lock and release deployed successfully")
 }
 
-exports.tags = ["sourcechain", "all"]
+module.exports.tags = ["sourcechain", "all"]
